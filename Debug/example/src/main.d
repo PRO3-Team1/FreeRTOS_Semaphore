@@ -1,7 +1,4 @@
-freertos/src/list.o freertos/src/list.d: ../freertos/src/list.c \
- /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/FreeRTOS.h \
- /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/projdefs.h \
- /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/example/inc/FreeRTOSConfig.h \
+example/src/main.o example/src/main.d: ../example/src/main.c \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_board_ea_devkit_4088/inc/board.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_chip_40xx/inc/chip.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_chip_40xx/inc/lpc_types.h \
@@ -57,16 +54,17 @@ freertos/src/list.o freertos/src/list.d: ../freertos/src/list.c \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_board_ea_devkit_4088/inc/board_api.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_chip_40xx/inc/lpc_types.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_board_ea_devkit_4088/inc/lpc_phy.h \
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/FreeRTOS.h \
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/projdefs.h \
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/example/inc/FreeRTOSConfig.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/portable.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/portmacro.h \
  /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/mpu_wrappers.h \
- /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/list.h
-
-/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/FreeRTOS.h:
-
-/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/projdefs.h:
-
-/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/example/inc/FreeRTOSConfig.h:
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/semphr.h \
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/queue.h \
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/task.h \
+ /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/list.h \
+ ../example/src/ms_timer.h
 
 /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_board_ea_devkit_4088/inc/board.h:
 
@@ -178,10 +176,24 @@ freertos/src/list.o freertos/src/list.d: ../freertos/src/list.c \
 
 /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/lpc_board_ea_devkit_4088/inc/lpc_phy.h:
 
+/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/FreeRTOS.h:
+
+/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/projdefs.h:
+
+/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/example/inc/FreeRTOSConfig.h:
+
 /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/portable.h:
 
 /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/portmacro.h:
 
 /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/mpu_wrappers.h:
 
+/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/semphr.h:
+
+/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/queue.h:
+
+/home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/task.h:
+
 /home/tobias/Documents/MCUXpresso_10.1.0_589/workspace/FreeRTOS_Semaphore/freertos/inc/list.h:
+
+../example/src/ms_timer.h:

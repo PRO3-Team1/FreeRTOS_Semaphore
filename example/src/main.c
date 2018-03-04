@@ -1,5 +1,5 @@
 /*
- * @brief FreeRTOS Blinky example
+ * @ Semaphore interrupt example.
  *
  * @note
  * Copyright(C) NXP Semiconductors, 2014
@@ -34,19 +34,12 @@
 #include "semphr.h"
 #include "task.h"
 #include "ms_timer.h"
-/*****************************************************************************
- * Private types/enumerations/variables
- ****************************************************************************/
-xSemaphoreHandle second_isr_semaphore;
-/*****************************************************************************
- * Public types/enumerations/variables
- ****************************************************************************/
 
-/*****************************************************************************
- * Private functions
- ****************************************************************************/
+xSemaphoreHandle second_isr_semaphore;
+
 static void second_callback_isr() {
-	xSemaphoreGive(second_isr_semaphore);
+	//Special semaphore function to be used inside ISR's
+	xSemaphoreGiveFromISR(second_isr_semaphore,NULL);
 }
 
 /* Sets up system hardware */
@@ -56,76 +49,32 @@ static void prvSetupHardware(void)
 	Board_Init();
 
 	ms_timer_init (second_callback_isr);
-	/* Initial LED0 state is off */
-	Board_LED_Set(0, false);
 }
 
-/* LED1 toggle thread */
-static void vLEDTask1(void *pvParameters) {
-	bool LedState = false;
-
-	while (1) {
-		Board_LED_Set(0, LedState);
-		LedState = (bool) !LedState;
-
-		/* About a 3Hz on/off toggle rate */
-		vTaskDelay(configTICK_RATE_HZ / 6);
-	}
-}
-
-/* LED2 toggle thread */
-static void vLEDTask2(void *pvParameters) {
-	bool LedState = false;
-
-	while (1) {
-		Board_LED_Set(1, LedState);
-		LedState = (bool) !LedState;
-		DEBUGOUT("vLEDTask2\n");
-		/* About a 7Hz on/off toggle rate */
-		vTaskDelay(configTICK_RATE_HZ / 14);
-	}
-}
-
-/* UART (or output) thread */
-static void vUARTTask(void *pvParameters) {
+/* Semaphore task. It is given a semaphore each second after a interrupt. */
+static void sem_task(void *pvParameters) {
 	int tickCnt = 0;
 
 	while (1) {
-
 		if(xSemaphoreTake(second_isr_semaphore, portMAX_DELAY)) {
 			DEBUGOUT("Tick: %d\r\n", tickCnt);
 			tickCnt++;
 		}
-
-
 	}
 }
 
-/*****************************************************************************
- * Public functions
- ****************************************************************************/
-
 /**
- * @brief	main routine for FreeRTOS blinky example
+ * @brief	main routine for Semaphore example
  * @return	Nothing, function should not exit
  */
 int main(void)
 {
-	vSemaphoreCreateBinary(second_isr_semaphore); //Setup the semaphore
+	//Setup the semaphore
+	vSemaphoreCreateBinary(second_isr_semaphore);
 	prvSetupHardware();
 
-	/* LED1 toggle thread */
-	xTaskCreate(vLEDTask1, (signed char *) "vTaskLed1",
-				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
-				(xTaskHandle *) NULL);
-
-	/* LED2 toggle thread */
-	xTaskCreate(vLEDTask2, (signed char *) "vTaskLed2",
-				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
-				(xTaskHandle *) NULL);
-
-	/* UART output thread, simply counts seconds */
-	xTaskCreate(vUARTTask, (signed char *) "vTaskUart",
+	// Semaphore tasks. Prints ticks every second after receiving semaphore.
+	xTaskCreate(sem_task, (signed char *) "sem_task",
 				configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1UL),
 				(xTaskHandle *) NULL);
 
