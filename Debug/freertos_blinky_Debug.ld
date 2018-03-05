@@ -5,7 +5,7 @@
  * Generated linker script file for LPC4088
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v10.1.0 [Build 589] [2017-11-14] on Mar 4, 2018 3:39:56 PM
+ * MCUXpresso IDE v10.0.2 [Build 411] [2017-07-11]  on 05-Mar-2018 10:05:19
  */
 
 INCLUDE "freertos_blinky_Debug_library.ld"
@@ -39,7 +39,7 @@ SECTIONS
         LONG(  SIZEOF(.bss_RAM2));
         __bss_section_table_end = .;
         __section_table_end = . ;
-        /* End of Global Section Table */
+	    /* End of Global Section Table */
 
         *(.after_vectors*)
 
@@ -149,13 +149,4 @@ SECTIONS
                                          + (( DEFINED(BusFault_Handler) ? BusFault_Handler : 0 ) + 1)     /* BusFault_Handler may not be defined */
                                          + (( DEFINED(UsageFault_Handler) ? UsageFault_Handler : 0 ) + 1) /* UsageFault_Handler may not be defined */
                                          ) );
-
-    /* Provide basic symbols giving location and size of main text
-     * block, including initial values of RW data sections. Note that
-     * these will need extending to give a complete picture with
-     * complex images (e.g multiple Flash banks).
-     */
-    _image_start = LOADADDR(.text);
-    _image_end = LOADADDR(.data) + SIZEOF(.data);
-    _image_size = _image_end - _image_start;
 }
