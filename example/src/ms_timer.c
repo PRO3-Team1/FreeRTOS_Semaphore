@@ -69,6 +69,7 @@ void ms_timer_init (void (*cb)(void))
 
 	/* Enable timer interrupt */
 	NVIC_ClearPendingIRQ (TIMER0_IRQn);
+	NVIC_SetPriority(TIMER0_IRQn, 40 + 1);
 	NVIC_EnableIRQ (TIMER0_IRQn);
 }
 

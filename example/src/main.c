@@ -56,7 +56,7 @@ static void second_callback_isr() {
 		Chip_GPIO_WritePortBit(LPC_GPIO, GPIO_PORT2, GPIO_PIN2, 1);
 		Board_LED_Toggle(3);
 		Chip_GPIO_WritePortBit(LPC_GPIO, GPIO_PORT2, GPIO_PIN2, 0);
-		taskYIELD();
+		portYIELD_FROM_ISR(task_woken);
 	}
 }
 
@@ -87,7 +87,9 @@ static void prvSetupHardware(void)
 static void sem_task(void *pvParameters) {
 	while (1) {
 		if(xSemaphoreTake(second_isr_semaphore, portMAX_DELAY)) {
+			Chip_GPIO_WritePortBit(LPC_GPIO, GPIO_PORT1, GPIO_PIN3, 1);
 			Board_LED_Toggle(1);
+			Chip_GPIO_WritePortBit(LPC_GPIO, GPIO_PORT1, GPIO_PIN3, 0);
 		}
 	}
 }
